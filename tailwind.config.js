@@ -11,6 +11,9 @@ export default {
         'btn-hover': '#708BF7',
         'bg-color': '#F1F4FF',
       },
+      backgroundImage: {
+        'banner': "url('/src/assets/banner.webp')",
+      }
     },
   },
   plugins: [require("daisyui")],
