@@ -17,6 +17,7 @@ const Header = () => {
     const navItems = <>
         <li><NavLink to={'/'} id="nav-item" className="hover:bg-transparent hover:text-[#767474] font-semibold duration-300">Home</NavLink></li>
         <li><NavLink to={'/meals'} id="nav-item" className="hover:bg-transparent hover:text-[#767474] font-semibold duration-300">Meals</NavLink></li>
+        <li><NavLink to={'/upcoming-meals'} id="nav-item" className="hover:bg-transparent hover:text-[#767474] font-semibold duration-300">Upcoming Meals</NavLink></li>
         <li className="hidden lg:flex"><NavLink to={''} id="nav-item" className="hover:color-[#767474] font-semibold duration-300 flex bg-red-300">
             <FaBell></FaBell>
         </NavLink></li>
