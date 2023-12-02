@@ -1,9 +1,17 @@
 import { Link, NavLink } from "react-router-dom";
 import { FaAlignLeft, FaBell } from 'react-icons/fa';
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../Providers/AuthProvider";
 
 const Header = () => {
     const [isScrolled, setIsScrolled] = useState(false);
+    const { user, logOut } = useContext(AuthContext)
+
+    const handleSignOut = () => {
+        logOut()
+            .then()
+            .catch()
+    }
 
     const handleScroll = () => {
         setIsScrolled(window.scrollY > 150);
@@ -18,7 +26,7 @@ const Header = () => {
         <li><NavLink to={'/'} id="nav-item" className="hover:bg-transparent hover:text-[#767474] font-semibold duration-300">Home</NavLink></li>
         <li><NavLink to={'/meals'} id="nav-item" className="hover:bg-transparent hover:text-[#767474] font-semibold duration-300">Meals</NavLink></li>
         <li><NavLink to={'/upcoming-meals'} id="nav-item" className="hover:bg-transparent hover:text-[#767474] font-semibold duration-300">Upcoming Meals</NavLink></li>
-        <li className="hidden lg:flex"><NavLink to={''} id="nav-item" className="hover:color-[#767474] font-semibold duration-300 flex bg-red-300">
+        <li className="hidden lg:flex"><NavLink to={''} id="nav-item" className="hover:bg-transparent hover:text-[#767474] font-semibold duration-300 flex">
             <FaBell></FaBell>
         </NavLink></li>
     </>
@@ -50,7 +58,34 @@ const Header = () => {
                     <ul className="hidden lg:flex menu menu-horizontal px-1 text-[#222] lg:text-base text-sm font-medium">
                         {navItems}
                     </ul>
-                    <Link to={'/login'} className="bg-[#282828] text-white hover:bg-btn-hover visited:bg-btn-hover focus:bg-btn-hover font-semibold text-[15px] tracking-[1px] py-[14px] px-7 rounded leading-[15px] duration-300 active:scale-x-95">Join US</Link>
+                    {
+                        user ? (
+                            <div className="dropdown dropdown-bottom dropdown-end">
+                                <div tabIndex={0} className="w-10 mb-2 cursor-pointer">
+                                    {
+                                        user.photoURL ? (
+                                            <img className="rounded-full" src={user.photoURL} alt="Profile" />
+                                        ) : (
+                                            <img className="rounded-full" src='' alt="Profile" />
+                                        )
+                                    }
+                                </div>
+                                <ul tabIndex={0} className="w-40 dropdown-content z-[1] menu p-3 shadow bg-white rounded-lg text-right font-semibold space-y-1">
+                                    {
+                                        user.displayName ? (
+                                            <li className='text-[#010f1c] text-center'>{user.displayName}</li>
+                                        ) : (
+                                            <li className='text-[#010f1c] text-center'>User Name</li>
+                                        )
+                                    }
+                                    <Link to={'/dashboard'}><li className='text-[#010f1c] hover:text-[#708BF7] pb-1 text-center'>Dashboard</li></Link>
+                                    <li><button className='bg-[#708BF7] text-white text-xs hover:text-white hover:bg-[#010f1c] w-full active:scale-90 justify-center' onClick={handleSignOut}>SIGN OUT</button></li>
+                                </ul>
+                            </div>
+                        ) : (
+                            <Link to={'/login'} className="bg-[#282828] text-white hover:bg-btn-hover font-semibold text-[15px] tracking-[1px] py-[14px] px-7 rounded leading-[15px] duration-300 active:scale-x-95">Join US</Link>
+                        )
+                    }
                 </div>
             </div>
         </header>
