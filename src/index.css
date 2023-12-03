@@ -17,3 +17,23 @@ body {
 #banner-overlay {
     background: rgba(241, 244, 255, 0.90);
 }
+
+.slick-prev:before, .slick-next:before {
+    color: #708BF7 !important;
+    font-size: 30px !important;
+}
+
+.slick-dots li button:before {
+    font-size: 10px !important;
+}
+
+.slick-list {
+    margin: 0 30px !important;
+}
+
+
+@media screen and (max-width: 700px) {
+    .slick-arrow {
+        display: none !important;
+    }
+}

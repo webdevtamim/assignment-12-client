@@ -36,11 +36,11 @@ const Membership = () => {
     ];
 
     return (
-        <div className="membership-card flex justify-center max-w-[1400px] px-5 mx-auto py-32">
+        <div className="membership-card md:flex justify-center md:max-w-[1400px] max-w-[400px] px-5 mx-auto lg:pt-20 md:pt-16 md:pb-32 pt-0 pb-0">
             {
                 packages.map((item, index) => <div
                     key={index}
-                    className="rounded-lg p-10 grid items-center"
+                    className="rounded-lg p-10 grid items-center my-20 md:my-0"
                     style={{
                         backgroundColor: `${item.bg}`, 
                         marginTop: `-${item.margin}`, 
@@ -49,10 +49,10 @@ const Membership = () => {
                         boxShadow: '0 0 15px rgba(0, 0, 0, 0.2)'
                     }}
                 >
-                    <div className="space-y-5 py-5 px-6">
+                    <div className="space-y-5 lg:py-5 lg:px-6 py-6">
                         <h3 className="text-lg text-center font-bold text-headning-color">{item.packageName}</h3>
-                        <p className="text-center text-[#282828] font-bold text-6xl flex items-center">
-                            <span className="text-5xl">$ </span>
+                        <p className="text-[#282828] font-bold lg:text-6xl text-4xl flex items-center justify-center">
+                            <span className="lg:text-5xl text-3xl">$ </span>
                             {item.price}
                         </p>
                         <ul className="text-center text-base text-gray-600">

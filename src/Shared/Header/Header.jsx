@@ -43,7 +43,7 @@ const Header = () => {
                 <div className="navbar-start">
                     <div className="dropdown">
                         <label tabIndex={0} className="text-2xl text-[#282828] cursor-pointer lg:hidden"><FaAlignLeft className="-mb-2"></FaAlignLeft></label>
-                        <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow font-semibold text-[#282828] tracking-[0.5px] text-[15px] bg-white w-screen mx-auto mt-7 border-t rounded-none -ml-5">{navItems}</ul>
+                        <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow font-semibold text-[#282828] w-[100vw] tracking-[0.5px] text-[15px] bg-white mx-auto mt-7 border-t rounded-none -ml-5">{navItems}</ul>
                     </div>
                     <Link to={'/'} className="hidden lg:flex text-xl justify-start items-center gap-2">
                         <img className="lg:w-1/6 w-full" src="logo.png" alt="logo" />

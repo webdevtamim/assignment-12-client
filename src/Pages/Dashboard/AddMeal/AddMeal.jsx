@@ -18,18 +18,21 @@ const AddMeal = () => {
         event.preventDefault();
         const form = event.target;
         const photo = form.photo.value;
-        const job = form.job.value;
+        const food = form.food.value;
         const name = form.name.value;
+        const likes = form.likes.value;
+        const ratings = form.ratings.value;
         const description = form.description.value;
 
-        const jobsObj = { photo, job, name, selectedCate, postDate, description, email }
+        const mealsObj = { photo, food, name, selectedCate, postDate, likes, ratings, description };
+        // const mealsObj = { photo, food, name, category: selectedCate, postDate, likes, ratings, description };
 
-        fetch('https://job-seeking-server-seven.vercel.app/jobs', {
+        fetch('http://localhost:5000/meals', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify(jobsObj)
+            body: JSON.stringify(mealsObj)
         })
             .then(res => res.json())
             .then(data => {
@@ -60,8 +63,8 @@ const AddMeal = () => {
                         <input className="mt-2 mb-6 w-full bg-white rounded border outline-none font-semibold border-[#474747] text-[#474747] tracking-widest text-xs py-3 px-4" type="url" name="photo" id="photo" placeholder="URL" required />
                         <div className="grid md:grid-cols-2 md:gap-x-10 md:gap-y-2">
                             <div>
-                                <label className="text-sm text-[#474747] tracking-widest font-bold" htmlFor="job">Job</label><br />
-                                <input className="mt-2 mb-6 w-full bg-white rounded border outline-none font-semibold border-[#474747] text-[#474747] tracking-widest text-xs py-3 px-4" type="text" name="job" id="job" placeholder="Job" required />
+                                <label className="text-sm text-[#474747] tracking-widest font-bold" htmlFor="food">Food</label><br />
+                                <input className="mt-2 mb-6 w-full bg-white rounded border outline-none font-semibold border-[#474747] text-[#474747] tracking-widest text-xs py-3 px-4" type="text" name="food" id="food" placeholder="Food" required />
                             </div>
                             <div>
                                 <label className="text-sm text-[#474747] tracking-widest font-bold">User Name</label><br />
@@ -84,6 +87,14 @@ const AddMeal = () => {
                             <div>
                                 <label className="text-sm text-[#474747] tracking-widest font-bold" htmlFor="date">Posting Date</label><br />
                                 <DatePicker className="mt-2 mb-6 w-full bg-white rounded border outline-none font-semibold border-[#474747] text-[#474747] tracking-widest text-sm py-3 px-4" selected={postDate} onChange={(date) => setPostDate(date)} />
+                            </div>
+                            <div>
+                                <label className="text-sm text-[#474747] tracking-widest font-bold" htmlFor="likes">Likes</label><br />
+                                <input className="mt-2 mb-6 w-full bg-white rounded border outline-none font-semibold border-[#474747] text-[#474747] tracking-widest text-xs py-3 px-4" type="number" name="likes" id="likes" placeholder="Likes" required />
+                            </div>
+                            <div>
+                                <label className="text-sm text-[#474747] tracking-widest font-bold" htmlFor="ratings">Ratings</label><br />
+                                <input className="mt-2 mb-6 w-full bg-white rounded border outline-none font-semibold border-[#474747] text-[#474747] tracking-widest text-xs py-3 px-4" type="number" name="ratings" id="ratings" placeholder="Ratings" required />
                             </div>
                         </div>
 
