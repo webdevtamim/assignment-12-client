@@ -22,9 +22,10 @@ const AddMeal = () => {
         const name = form.name.value;
         const likes = form.likes.value;
         const ratings = form.ratings.value;
+        const price = form.price.value;
         const description = form.description.value;
 
-        const mealsObj = { photo, food, name, selectedCate, postDate, likes, ratings, description };
+        const mealsObj = { photo, food, name, selectedCate, postDate, likes, ratings, price, description };
         // const mealsObj = { photo, food, name, category: selectedCate, postDate, likes, ratings, description };
 
         fetch('http://localhost:5000/meals', {
@@ -95,6 +96,10 @@ const AddMeal = () => {
                             <div>
                                 <label className="text-sm text-[#474747] tracking-widest font-bold" htmlFor="ratings">Ratings</label><br />
                                 <input className="mt-2 mb-6 w-full bg-white rounded border outline-none font-semibold border-[#474747] text-[#474747] tracking-widest text-xs py-3 px-4" type="number" name="ratings" id="ratings" placeholder="Ratings" required />
+                            </div>
+                            <div>
+                                <label className="text-sm text-[#474747] tracking-widest font-bold" htmlFor="price">Price</label><br />
+                                <input className="mt-2 mb-6 w-full bg-white rounded border outline-none font-semibold border-[#474747] text-[#474747] tracking-widest text-xs py-3 px-4" type="number" name="price" id="price" placeholder="Price" required />
                             </div>
                         </div>
 
