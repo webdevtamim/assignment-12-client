@@ -2,6 +2,7 @@ import { Link, NavLink } from "react-router-dom";
 import { FaAlignLeft, FaBell } from 'react-icons/fa';
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
+import avatar from "../../assets/avatar.png";
 
 const Header = () => {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -66,7 +67,7 @@ const Header = () => {
                                         user.photoURL ? (
                                             <img className="rounded-full" src={user.photoURL} alt="Profile" />
                                         ) : (
-                                            <img className="rounded-full" src='' alt="Profile" />
+                                            <img className="rounded-full" src={avatar} alt="Profile" />
                                         )
                                     }
                                 </div>

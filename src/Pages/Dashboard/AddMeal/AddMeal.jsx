@@ -1,55 +1,50 @@
-// import { useContext, useState } from "react";
-// import DatePicker from "react-datepicker";
-// import "react-datepicker/dist/react-datepicker.css";
-// import { AuthContext } from "../../providers/AuthProvider";
-// import Swal from 'sweetalert2';
+import { useContext, useState } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { AuthContext } from "../../../Providers/AuthProvider";
+import Swal from 'sweetalert2';
 
 const AddMeal = () => {
-    // const { user } = useContext(AuthContext);
+    const { user } = useContext(AuthContext)
 
-    // const [selectedCate, setSelectedBrand] = useState(null);
-    // const [deadline, setDeadline] = useState(new Date());
-    // const [startDate, setStartDate] = useState(new Date());
+    const [selectedCate, setselectedCate] = useState('');
+    const [postDate, setPostDate] = useState(new Date());
 
-    // const handleSelectChange = (event) => {
-    //     setSelectedBrand(event.target.value);
-    // };
+    const handleSelectChange = (event) => {
+        setselectedCate(event.target.value);
+    };
 
     const handleAddJob = event => {
         event.preventDefault();
-        // const form = event.target;
-        // const banner = form.banner.value;
-        // const photo = form.photo.value;
-        // const job = form.job.value;
-        // const name = form.name.value;
-        // const salary = form.salary.value;
-        // const applicants = form.applicants.value;
-        // const description = form.description.value;
-        // const email = user.email;
+        const form = event.target;
+        const photo = form.photo.value;
+        const job = form.job.value;
+        const name = form.name.value;
+        const description = form.description.value;
 
-        // const jobsObj = { banner, photo, job, name, salary, selectedCate, startDate, deadline, applicants, description, email }
+        const jobsObj = { photo, job, name, selectedCate, postDate, description, email }
 
-        // fetch('https://job-seeking-server-seven.vercel.app/jobs', {
-        //     method: 'POST',
-        //     headers: {
-        //         'content-type': 'application/json'
-        //     },
-        //     body: JSON.stringify(jobsObj)
-        // })
-        //     .then(res => res.json())
-        //     .then(data => {
-        //         console.log(data);
-        //         if (data.insertedId) {
-        //             Swal.fire({
-        //                 title: 'Success!',
-        //                 text: 'Product added successfully',
-        //                 icon: 'success',
-        //                 confirmButtonText: 'Cool'
-        //             })
-        //         }
-        //     })
+        fetch('https://job-seeking-server-seven.vercel.app/jobs', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(jobsObj)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.insertedId) {
+                    Swal.fire({
+                        title: 'Success!',
+                        text: 'Product added successfully',
+                        icon: 'success',
+                        confirmButtonText: 'Cool'
+                    })
+                }
+            })
 
-        // event.target.reset();
+        event.target.reset();
     }
 
     return (
@@ -61,51 +56,34 @@ const AddMeal = () => {
                 </div>
                 <div className="p-10 border rounded-lg md:max-w-[70%] mx-auto shadow-xl">
                     <form onSubmit={handleAddJob}>
-                        <label className="text-sm text-[#474747] tracking-widest font-bold" htmlFor="banner">Job Banner URL</label><br />
-                        <input className="mt-2 mb-6 w-full bg-white rounded border outline-none font-semibold border-[#474747] text-[#474747] tracking-widest text-xs py-3 px-4" type="url" name="banner" id="banner" placeholder="Job Banner URL" required />
+                        <label className="text-sm text-[#474747] tracking-widest font-bold" htmlFor="photo">Image</label><br />
+                        <input className="mt-2 mb-6 w-full bg-white rounded border outline-none font-semibold border-[#474747] text-[#474747] tracking-widest text-xs py-3 px-4" type="url" name="photo" id="photo" placeholder="URL" required />
                         <div className="grid md:grid-cols-2 md:gap-x-10 md:gap-y-2">
-                            <div>
-                                <label className="text-sm text-[#474747] tracking-widest font-bold" htmlFor="photo">Logo URL</label><br />
-                                <input className="mt-2 mb-6 w-full bg-white rounded border outline-none font-semibold border-[#474747] text-[#474747] tracking-widest text-xs py-3 px-4" type="url" name="photo" id="photo" placeholder="Company Logo" required />
-                            </div>
                             <div>
                                 <label className="text-sm text-[#474747] tracking-widest font-bold" htmlFor="job">Job</label><br />
                                 <input className="mt-2 mb-6 w-full bg-white rounded border outline-none font-semibold border-[#474747] text-[#474747] tracking-widest text-xs py-3 px-4" type="text" name="job" id="job" placeholder="Job" required />
                             </div>
-                            {/* <div>
-                                <label className="text-sm text-[#474747] tracking-widest font-bold">User Name</label><br />
-                                <input className="mt-2 mb-6 w-full bg-white rounded border outline-none font-semibold border-[#474747] text-[#474747] tracking-widest text-xs py-3 px-4" type="name" name="name" defaultValue={user.displayName} required />
-                            </div> */}
                             <div>
-                                <label className="text-sm text-[#474747] tracking-widest font-bold" htmlFor="salary">Salary Range</label><br />
-                                <input className="mt-2 mb-6 w-full bg-white rounded border outline-none font-semibold border-[#474747] text-[#474747] tracking-widest text-xs py-3 px-4" type="text" name="salary" id="salary" placeholder="Salary Range" required />
+                                <label className="text-sm text-[#474747] tracking-widest font-bold">User Name</label><br />
+                                <input className="mt-2 mb-6 w-full bg-white rounded border outline-none font-semibold border-[#474747] text-[#474747] tracking-widest text-xs py-3 px-4" type="name" name="name" defaultValue={user ? user.displayName : ''} required />
                             </div>
-                            {/* <div>
+                            <div>
                                 <label className="text-sm text-[#474747] tracking-widest font-bold">Category</label>
                                 <select
                                     className="mt-2 mb-6 bg-white rounded select select-bordered outline-none font-semibold border-[#7A7A7A] text -tracking-widest text-[#474747] text-xs px-4 w-full"
-                                    name="brand"
+                                    name="category"
                                     value={selectedCate}
                                     onChange={handleSelectChange}
                                     required
                                 >
-                                    <option>On Site</option>
-                                    <option>Remote</option>
-                                    <option>Part-Time</option>
-                                    <option>Hybrid</option>
+                                    <option>Breakfast</option>
+                                    <option>Lunch</option>
+                                    <option>Dinner</option>
                                 </select>
-                            </div> */}
-                            {/* <div>
-                                <label className="text-sm text-[#474747] tracking-widest font-bold" htmlFor="date">Posting Date</label><br />
-                                <DatePicker className="mt-2 mb-6 w-full bg-white rounded border outline-none font-semibold border-[#474747] text-[#474747] tracking-widest text-sm py-3 px-4" selected={startDate} onChange={(date) => setStartDate(date)} />
-                            </div> */}
-                            {/* <div>
-                                <label className="text-sm text-[#474747] tracking-widest font-bold">Deadline</label><br />
-                                <DatePicker className="mt-2 mb-6 w-full bg-white rounded border outline-none font-semibold border-[#474747] text-[#474747] tracking-widest text-sm py-3 px-4" selected={deadline} onChange={(date) => setDeadline(date)} />
-                            </div> */}
+                            </div>
                             <div>
-                                <label className="text-sm text-[#474747] tracking-widest font-bold" htmlFor="deadline">Applicants Number</label><br />
-                                <input className="mt-2 mb-6 w-full bg-white rounded border outline-none font-semibold border-[#474747] text-[#474747] tracking-widest text-sm py-3 px-4" type="text" name="applicants" value={0} readOnly />
+                                <label className="text-sm text-[#474747] tracking-widest font-bold" htmlFor="date">Posting Date</label><br />
+                                <DatePicker className="mt-2 mb-6 w-full bg-white rounded border outline-none font-semibold border-[#474747] text-[#474747] tracking-widest text-sm py-3 px-4" selected={postDate} onChange={(date) => setPostDate(date)} />
                             </div>
                         </div>
 
