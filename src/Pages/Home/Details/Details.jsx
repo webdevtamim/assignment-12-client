@@ -20,7 +20,7 @@ const Details = () => {
     const handleMealRequest = (photo, food, price, name, selectedCate) => {
         const mealsObj = { photo, food, price, name, selectedCate };
         if (user) {
-            fetch('http://localhost:5000/mealRequest', {
+            fetch('https://b8a12-the-final-effort-server-side.vercel.app/mealRequest', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'

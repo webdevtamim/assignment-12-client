@@ -28,7 +28,7 @@ const AddMeal = () => {
         const mealsObj = { photo, food, name, selectedCate, postDate, likes, ratings, price, description };
         // const mealsObj = { photo, food, name, category: selectedCate, postDate, likes, ratings, description };
 
-        fetch('http://localhost:5000/meals', {
+        fetch('https://b8a12-the-final-effort-server-side.vercel.app/meals', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
