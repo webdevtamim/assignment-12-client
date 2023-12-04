@@ -36,6 +36,7 @@ const Reviews = () => {
     return (
         <div>
             <div className="testimonial-slider max-w-[600px] mx-auto text-center">
+                <h2 className='text-headning-color font-bold text-4xl mb-10'>Testimonials</h2>
                 <Slider {...settings}>
                     {studentReviewsData.map((testimonial) => (
                         <div key={testimonial.id} className="testimonial-slide">

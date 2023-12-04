@@ -11,18 +11,25 @@ const CateTab = () => {
     const lunch = meals.filter(item => item.selectedCate === 'Lunch');
     const dinner = meals.filter(item => item.selectedCate === 'Dinner');
 
+    const category = [
+        {button: 'All', item: meals},
+        {button: 'Breakfast', item: meals},
+        {button: 'Lunch', item: meals},
+        {button: 'Dinner', item: meals},
+    ]
+
     return (
-        <div className="max-w-[1400px] mx-auto px-5">
+        <div className="max-w-[1400px] mx-auto px-5 pt-20 pb-32">
             <Tabs defaultIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
                 <TabList>
-                    <Tab>All</Tab>
-                    <Tab>Breakfast</Tab>
-                    <Tab>Lunch</Tab>
-                    <Tab>Dinner</Tab>
+                    {
+                        category.map((item, index) => <Tab key={index}>{item.button}</Tab>)
+                    }
                 </TabList>
                 <TabPanel>
                     {
                         meals.map((items, index) => <CateMeals
+                        className="grid grid-cols-4"
                             key={index}
                             items={items}
                         ></CateMeals>)
@@ -31,6 +38,7 @@ const CateTab = () => {
                 <TabPanel>
                     {
                         breakfast.map((items, index) => <CateMeals
+                        className="grid grid-cols-4"
                             key={index}
                             items={items}
                         ></CateMeals>)
@@ -39,6 +47,7 @@ const CateTab = () => {
                 <TabPanel>
                     {
                         lunch.map((items, index) => <CateMeals
+                        className="grid grid-cols-4"
                             key={index}
                             items={items}
                         ></CateMeals>)
@@ -47,6 +56,7 @@ const CateTab = () => {
                 <TabPanel>
                     {
                         dinner.map((items, index) => <CateMeals
+                        className="grid grid-cols-4"
                             key={index}
                             items={items}
                         ></CateMeals>)

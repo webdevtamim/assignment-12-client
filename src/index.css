@@ -31,9 +31,24 @@ body {
     margin: 0 30px !important;
 }
 
-
 @media screen and (max-width: 700px) {
     .slick-arrow {
         display: none !important;
     }
+}
+
+.react-tabs__tab-panel--selected {
+    display: grid !important;
+    grid-template-columns: auto auto auto auto;
+    gap: 20px;
+}
+
+@media screen and (max-width: 1000px) {
+    .react-tabs__tab-panel--selected {
+        grid-template-columns: auto auto;
+    }
+}
+
+.rating {
+    width: 100px;
 }
